@@ -37,12 +37,11 @@ Project ini dibuat untuk melatih kemampuan dalam pengembangan aplikasi berbasis 
 
 ## 📸 Tampilan Aplikasi
 
-Contoh:
+### 🏠 Halaman login
+![Login Page](assets/login.png)
 
-```md
-![Home Page](assets/home.png)
-![Halaman Pemesanan](assets/order.png)
-```
+### 💻 Halaman Dashboard
+![Dashboard Page](assets/dashboard.png)
 
 ## 📂 Struktur Folder
 
