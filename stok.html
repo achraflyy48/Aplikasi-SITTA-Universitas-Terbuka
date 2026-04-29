@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Stok - Bahan Ajar UT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigasi -->
+    <nav class="bg-[#003366] text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold text-xl cursor-pointer" onclick="navigateTo('dashboard.html')">BA UT-Daerah</span>
+            <button onclick="navigateTo('dashboard.html')" class="hover:text-[#ffcc00] font-bold transition">Dashboard</button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-10 animate-fade">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10">
+            <h2 class="text-3xl font-black text-[#003366]">Stok Bahan Ajar</h2>
+            <button onclick="toggleModal('modal-add-stok')" class="mt-4 sm:mt-0 bg-[#003366] text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-blue-900 transition flex items-center">
+                <span class="text-2xl mr-2 leading-none">+</span> Tambah Stok
+            </button>
+        </div>
+
+        <!-- Tabel Stok Utama -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b border-gray-100">
+                        <tr>
+                            <th class="p-6 text-sm font-bold text-gray-600">KODE MK</th>
+                            <th class="p-6 text-sm font-bold text-gray-600">JUDUL BUKU</th>
+                            <th class="p-6 text-sm font-bold text-gray-600 text-center">EDISI</th>
+                            <th class="p-6 text-sm font-bold text-gray-600 text-center">STOK</th>
+                            <th class="p-6 text-sm font-bold text-gray-600">KATEGORI</th>
+                            <th class="p-6 text-sm font-bold text-gray-600 text-center">AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stok-tbody">
+                        <!-- Data dirender oleh JavaScript dari db_bahanAjar -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail Stok (Dengan Gambar Cover) -->
+    <div id="modal-detail-stok" class="modal">
+        <div class="bg-white rounded-3xl max-w-2xl w-full mx-4 shadow-2xl overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/3 bg-gray-200">
+                <img id="det-gambar" src="" alt="Sampul Buku" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-2/3 p-8">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 id="det-judul" class="text-2xl font-black text-[#003366] mb-1">-</h3>
+                        <p id="det-kode" class="text-xs font-bold text-gray-400 uppercase tracking-widest">-</p>
+                    </div>
+                    <button onclick="toggleModal('modal-detail-stok')" class="text-gray-400 hover:text-gray-600 font-bold text-xl transition">✕</button>
+                </div>
+                
+                <hr class="my-6 border-gray-100">
+
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Edisi</p>
+                        <p id="det-edisi" class="font-bold text-gray-800">-</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Kategori</p>
+                        <p id="det-kategori" class="font-bold text-gray-800">-</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-400 uppercase">Status Stok</p>
+                        <p id="det-stok" class="font-bold text-blue-600">-</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <p class="text-[10px] font-bold text-gray-400 uppercase mb-2">Deskripsi Ringkas</p>
+                    <p id="det-deskripsi" class="text-sm text-gray-600 leading-relaxed italic">-</p>
+                </div>
+
+                <button onclick="toggleModal('modal-detail-stok')" class="w-full bg-[#003366] text-white py-3 rounded-xl font-bold shadow-lg hover:bg-blue-900 transition">Tutup Detail</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Stok Baru -->
+    <div id="modal-add-stok" class="modal">
+        <div class="bg-white p-10 rounded-3xl max-w-lg w-full mx-4 shadow-2xl">
+            <h3 class="text-2xl font-bold mb-6 text-[#003366]">Tambah Bahan Ajar</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1 ml-1">Kode MK</label>
+                    <input type="text" id="add-kode" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#003366]" placeholder="MKDU4110">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1 ml-1">Edisi</label>
+                    <input type="number" id="add-edisi" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#003366]" placeholder="1">
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1 ml-1">Nama Mata Kuliah</label>
+                <input type="text" id="add-nama" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#003366]" placeholder="Nama Lengkap MK">
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1 ml-1">Jumlah Stok</label>
+                    <input type="number" id="add-stok" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#003366]" placeholder="0">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1 ml-1">Kategori</label>
+                    <select id="add-kategori" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#003366] bg-white">
+                        <option value="Umum">Umum</option>
+                        <option value="Pendas">Pendas</option>
+                        <option value="Non-Pendas">Non-Pendas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="toggleModal('modal-add-stok')" class="flex-1 bg-gray-100 py-4 rounded-2xl font-bold hover:bg-gray-200 transition">Batal</button>
+                <button onclick="submitNewStok()" class="flex-1 bg-[#003366] text-white py-4 rounded-2xl font-bold hover:bg-blue-900 transition shadow-lg">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Utama -->
+    <script src="script.js"></script>
+</body>
+</html>

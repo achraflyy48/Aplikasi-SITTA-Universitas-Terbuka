@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bahan Ajar UT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="bg-[#003366] text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="assets/Logo UT (1).png" alt="Logo" class="h-10 bg-white p-1 rounded">
+                <span class="font-bold text-xl">Bahan Ajar UT-Daerah</span>
+            </div>
+            <button onclick="processLogout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-sm font-bold transition">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-10 animate-fade">
+        <div class="mb-12">
+            <h1 id="user-greeting" class="text-4xl font-black text-[#003366]">Halo, Selamat Datang</h1>
+            <div class="h-1 w-20 bg-[#ffcc00] mt-4 rounded"></div>
+            <p class="text-gray-500 text-lg mt-4 font-medium">Layanan Pengelolaan Bahan Ajar Daerah</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- MENU STOK -->
+            <div onclick="navigateTo('stok.html')" class="menu-card bg-white p-8 rounded-3xl shadow-md border-b-8 border-blue-500 cursor-pointer">
+                <div class="text-4xl mb-6">📚</div>
+                <h3 class="text-2xl font-bold text-gray-800">Info Stok</h3>
+                <p class="text-gray-500 mt-3 text-sm">Cek ketersediaan buku teks di gudang daerah secara real-time.</p>
+            </div>
+
+            <!-- MENU TRACKING -->
+            <div onclick="navigateTo('tracking.html')" class="menu-card bg-white p-8 rounded-3xl shadow-md border-b-8 border-[#ffcc00] cursor-pointer">
+                <div class="text-4xl mb-6">🚚</div>
+                <h3 class="text-2xl font-bold text-gray-800">Tracking</h3>
+                <p class="text-gray-500 mt-3 text-sm">Lacak status pengiriman paket mahasiswa melalui Nomor DO.</p>
+            </div>
+
+            <!-- MENU LAPORAN (Dengan Fitur Click Toggle) -->
+            <div id="laporan-card" onclick="toggleLaporanMenu()" class="menu-card bg-white p-8 rounded-3xl shadow-md border-b-8 border-green-500 cursor-pointer relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div class="text-4xl mb-6">📊</div>
+                    <div class="rotate-icon text-gray-400 text-xl mt-2">▼</div>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800">Laporan</h3>
+                <p class="text-gray-500 mt-2 text-sm">Klik untuk melihat daftar laporan ketersediaan dan progress.</p>
+                
+                <!-- SUB-MENU (Hanya tampil saat diklik) -->
+                <div id="laporan-submenu" class="space-y-3">
+                    <button onclick="event.stopPropagation(); alert('Membuka Laporan Progress...')" class="w-full text-left p-4 rounded-2xl bg-gray-50 hover:bg-green-50 text-sm font-bold text-gray-700 transition flex items-center group">
+                        <span class="mr-3 text-xl transition group-hover:scale-125">📈</span> 
+                        Monitoring Progress DO Bahan Ajar
+                    </button>
+                    <button onclick="event.stopPropagation(); alert('Membuka Rekap Bahan Ajar...')" class="w-full text-left p-4 rounded-2xl bg-gray-50 hover:bg-green-50 text-sm font-bold text-gray-700 transition flex items-center group">
+                        <span class="mr-3 text-xl transition group-hover:scale-125">📋</span> 
+                        Rekap Bahan Ajar
+                    </button>
+                </div>
+            </div>
+            <!-- MENU HISTORI TRANSAKSI (DITAMBAHKAN KEMBALI) -->
+            <div onclick="alert('Menu ini masih dalam tahap pengembangan...')" class="menu-card bg-white p-8 rounded-3xl shadow-md border-b-8 border-purple-500 cursor-pointer">
+                <div class="text-4xl mb-6">🕒</div>
+                <h3 class="text-2xl font-bold text-gray-800">Histori Transaksi Bahan Ajar</h3>
+                <p class="text-gray-500 mt-3 text-sm">Lihat riwayat keluar masuk dan mutasi stok bahan ajar secara mendalam.</p>
+            </div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+:root {
+    --ut-blue: #003366;
+    --ut-yellow: #ffcc00;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    transition: background 0.3s ease;
+}
+
+.bg-ut-blue { background-color: var(--ut-blue); }
+.text-ut-blue { color: var(--ut-blue); }
+.bg-ut-yellow { background-color: var(--ut-yellow); }
+
+/* Animasi Fade In */
+.animate-fade {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal Box Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tracking Progress Bar */
+.progress-bar-bg {
+    width: 100%;
+    background-color: #e2e8f0;
+    border-radius: 99px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    transition: width 1s ease-in-out;
+}
+
+/* Card Hover Effects */
+.menu-card {
+    transition: all 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/*Rotasi icon panah saat aktif*/
+.rotate.icon {
+    transition: transform 0.3s ease;
+}
+.active.rotate.icon {
+    transform: rotate(180deg);
+}
+
+/* Transisi untuk sub-menu */
+#laporan-submenu {
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+#laporan-submenu.show {
+    max-height: 500px;
+    opacity: 1;
+    margin-top: 1.5rem;
+}

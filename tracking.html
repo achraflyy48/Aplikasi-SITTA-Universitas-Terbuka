@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking - Bahan Ajar UT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="bg-[#003366] text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-bold text-xl cursor-pointer" onclick="navigateTo('dashboard.html')">BA UT-Daerah</span>
+            <button onclick="navigateTo('dashboard.html')" class="hover:text-[#ffcc00] font-bold">Dashboard</button>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-10 animate-fade">
+        <div class="max-w-4xl mx-auto bg-white p-10 rounded-3xl shadow-xl">
+            <h2 class="text-3xl font-black text-[#003366] mb-8">Lacak Pengiriman</h2>
+            
+            <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                <input type="text" id="track-input" class="flex-grow p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none" placeholder="Masukkan No. DO (Contoh: DO-2023001)">
+                <button onclick="handleTrackingSearch()" class="bg-[#ffcc00] text-[#003366] font-black px-10 py-4 rounded-2xl hover:bg-yellow-400 shadow-lg">CARI</button>
+            </div>
+
+            <div id="track-result" class="hidden">
+                <div class="bg-blue-50 p-6 rounded-2xl mb-8">
+                    <p id="t-nama" class="text-2xl font-black text-[#003366]">-</p>
+                    <span id="t-status" class="inline-block mt-2 px-4 py-1 bg-white text-blue-600 rounded-full text-xs font-black shadow-sm">STATUS</span>
+                </div>
+                <div class="progress-bar-bg mb-10"><div id="t-progress" class="progress-bar-fill" style="width: 0%"></div></div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div class="p-4 border rounded-xl"><p class="text-gray-400 font-bold text-[10px]">EKS</p><p id="t-eks" class="font-bold">-</p></div>
+                    <div class="p-4 border rounded-xl"><p class="text-gray-400 font-bold text-[10px]">TGL</p><p id="t-tgl" class="font-bold">-</p></div>
+                    <div class="p-4 border rounded-xl"><p class="text-gray-400 font-bold text-[10px]">JENIS</p><p id="t-jen" class="font-bold">-</p></div>
+                    <div class="p-4 border rounded-xl"><p class="text-gray-400 font-bold text-[10px]">TOTAL</p><p id="t-tot" class="font-bold">-</p></div>
+                </div>
+            </div>
+
+            <div id="track-error" class="hidden text-center py-10 text-red-500 font-bold">DO tidak ditemukan.</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
